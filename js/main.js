@@ -53,6 +53,7 @@ const showPrevPage = () => {
   pageNum--;
   queueRenderPage(pageNum);
 }
+
 const getScale = () => {
   scale = document.querySelector("#scale").value;
   document.querySelector("#scale-value").textContent = scale;
