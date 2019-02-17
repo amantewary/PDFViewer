@@ -21,7 +21,9 @@
     </button>
     <span class="page-info">
       Page <span id="page-num"></span> of <span id="page-count"></span>
-    </span>
+    </span>&nbsp;&nbsp;
+    Scale: <input id= "scale" type="range" min="1" max="5" step= "0.5" value="1.5">
+    <span id="scale-value"></span>
   </div>
   <canvas id="pdf-render"></canvas>
   <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>

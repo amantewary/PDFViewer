@@ -5,14 +5,17 @@ let pdfDoc = null,
   pageIsRendering = false,
   pageNumIsPending = null;
 
-const scale = 1.5,
-  canvas = document.querySelector('#pdf-render'),
+let scale = 1.5;
+
+const canvas = document.querySelector('#pdf-render'),
   ctx = canvas.getContext('2d');
 
 const renderPage = num => {
   pageIsRendering = true;
-
+  let a = getScale();
+  console.log(a);
   pdfDoc.getPage(num).then(page => {
+
     const viewport = page.getViewport({
       scale
     });
@@ -50,6 +53,11 @@ const showPrevPage = () => {
   pageNum--;
   queueRenderPage(pageNum);
 }
+const getScale = () => {
+  scale = document.querySelector("#scale").value;
+  document.querySelector("#scale-value").textContent = scale;
+  queueRenderPage(pageNum);
+}
 
 const showNextPage = () => {
   if (pageNum >= pdfDoc.numPages) {
@@ -75,3 +83,4 @@ pdfjsLib.getDocument(url).promise.then(pdfDoc_ => {
 
 document.querySelector("#prev-page").addEventListener("click", showPrevPage);
 document.querySelector("#next-page").addEventListener("click", showNextPage);
+document.querySelector("#scale").addEventListener("change", getScale);
